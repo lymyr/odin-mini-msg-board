@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css-reset.css">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="/css-reset.css">
+    <link rel="stylesheet" href="/styles.css">
     <title>Odin Mini Message Board</title>
 </head>
 <body>
     <%- include('components/header') %>
     <main>
         <h2>Message Details</h2>
-        <div>
+        <div class="deets-wrapper">
             <div>
                 <h3>Username</h3>
                 <p><%= message.user %></p>

@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css-reset.css">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="/css-reset.css">
+    <link rel="stylesheet" href="/styles.css">
     <title>Odin Mini Message Board</title>
 </head>
 <body>
     <%- include('components/header') %>
     <main>
         <h2>All Messages</h2>
-        <div>
+        <div class="msg-wrapper">
             <% messages.forEach((m, i) => {%>
-                <div>
-                    <div>
+                <div class="msg">
+                    <div class="user-deets">
                         <div>
                             <p><strong><%= m.user %> </strong></p>
-                            <p><%= m.added.toLocaleString() %></p>
+                            <p class="user-date"><%= m.added.toLocaleString() %></p>
                         </div>
                         <form method="POST" action="/nav">
                             <input type="hidden" name='index' value=<%=i %>>
                             <button>Open</button>
                         </form>
                     </div>
-                    <p> <%= m.text %> </p>
+                    <p class="msg-text"> <%= m.text %> </p>
                 </div>
             <%})%>
         </div>
