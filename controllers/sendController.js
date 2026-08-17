@@ -1,15 +1,31 @@
+import { body, validationResult } from "express-validator"
 import { 
     postMessage as queryAddMsg
  } from "../db/query.js"
+
+const messageValidator = [
+    body('username')
+        .trim().notEmpty().withMessage("Username must not be empty.")
+        .isLength({max: 20}).withMessage("Username must not exceed 20 characters"),
+    body('message')
+        .trim().notEmpty().withMessage("Message must not be empty.")
+        .isLength({max:300}).withMessage("Message should not exceed 300 characters.")
+]
 
 function getSendPage(req, res) {
     res.render('send')
 }
 
-async function postMessage(req, res) {
-    const { username, message } = req.body
-    await queryAddMsg(username, message, new Date())
-    res.redirect('/')
-}
+const postMessage = [
+    messageValidator,
+    async (req, res) => {
+        const errors = validationResult(req)
+        if (errors.isEmpty()) {
+            await queryAddMsg(req.body.username, req.body.message, new Date())
+            return res.redirect('/')
+        }
+        res.status(400).render('send', {errors: errors.mapped()})
+    }
+]
 
 export { getSendPage, postMessage }

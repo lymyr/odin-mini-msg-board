@@ -1,11 +1,19 @@
 <form method="POST" action="/send">
     <div class="input-group">
         <label for="username">Username</label>
-        <input id="username" name="username" required>
+        <input id="username" name="username">
+        <% if (locals.errors.username) { %>
+            <p style="color: rgb(125, 10, 10)"> <%= errors.username.msg %> </p>
+        <%}%>
+
+        
     </div>
     <div class="input-group">
         <label for="message">message</label>
-        <input id="message" name="message" required>
+        <input id="message" name="message">
+        <% if (locals.errors.message) { %>
+            <p style="color: rgb(125, 10, 10)"> <%= errors.message.msg %> </p>
+        <%}%>
     </div>
     <button>Submit</button>
 </form>
