@@ -17,12 +17,18 @@ export async function postMessage(madeBy, text, dateAdded) {
     [madeBy, text, dateAdded])
 }
 
-// todo: add before deploy. check rows, if too many, delete oldest ~30 rows ig idk
-async function checkRows() {
+// used so i wont use too much storage in deployment.
+// checks rows, if too many, delete oldest ~10 rows ig idk
+export async function checkRows() {
     const { rows } = await pool.query('SELECT COUNT(*) FROM messages')
-    return rows
+    return rows[0].count
 }
 
-async function deleteOldMessages() {
-    await pool.query('SELECT FROM messages ')
+export async function deleteOldMessages() {
+    await pool.query(`
+        DELETE FROM messages 
+            WHERE messages.id IN (
+                SELECT id FROM messages ORDER BY date_added ASC LIMIT 10
+            )
+    `)
 }

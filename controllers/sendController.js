@@ -2,6 +2,7 @@ import { body, validationResult } from "express-validator"
 import { 
     postMessage as queryAddMsg
  } from "../db/query.js"
+import limitMessages from "../helpers/limitMessages.js"
 
 const messageValidator = [
     body('username')
@@ -22,6 +23,7 @@ const postMessage = [
         const errors = validationResult(req)
         if (errors.isEmpty()) {
             await queryAddMsg(req.body.username, req.body.message, new Date())
+            limitMessages()
             return res.redirect('/')
         }
         res.status(400).render('send', {errors: errors.mapped()})
