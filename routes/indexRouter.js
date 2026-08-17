@@ -6,7 +6,7 @@ const indexRouter = Router()
 
 indexRouter.get('/', getIndexPage)
 
-indexRouter.get('/deets/:index', getDeetsPage)
+indexRouter.get('/deets/:id', getDeetsPage)
 
 indexRouter.post('/nav', postNav)
 
