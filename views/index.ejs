@@ -16,11 +16,11 @@
                 <div class="msg">
                     <div class="user-deets">
                         <div>
-                            <p><strong><%= m.user %> </strong></p>
-                            <p class="user-date"><%= m.added.toLocaleString() %></p>
+                            <p><strong><%= m.made_by %> </strong></p>
+                            <p class="user-date"><%= m.date_added.toLocaleString() %></p>
                         </div>
                         <form method="POST" action="/nav">
-                            <input type="hidden" name='index' value=<%=i %>>
+                            <input type="hidden" name='id' value=<%= m.id %>>
                             <button>Open</button>
                         </form>
                     </div>
