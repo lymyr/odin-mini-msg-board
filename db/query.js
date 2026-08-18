@@ -1,7 +1,7 @@
 import pool from "./pool.js";
 
 export async function getMessages() {
-    const { rows } = await pool.query('SELECT * FROM messages')
+    const { rows } = await pool.query('SELECT * FROM messages ORDER BY date_added DESC')
     return rows
 }
 
