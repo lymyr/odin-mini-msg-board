@@ -4,5 +4,5 @@ import {loadEnvFile} from 'node:process'
 loadEnvFile()
 
 export default new Pool({
-    connectionString: process.argv[2]
+    connectionString: process.env.DBSTRING
 })

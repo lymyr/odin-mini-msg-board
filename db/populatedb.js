@@ -17,7 +17,7 @@ if (process.argv[3] == 'seed')
     `
 async function main() {
     const client = new Client({
-        connectionString: process.argv[2]
+        connectionString: process.env.DBSTRING
     })
     await client.connect()
     await client.query(SQL)
